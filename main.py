@@ -54,4 +54,4 @@ if __name__ == "__main__":
     ant: Ant = Ant(1000, 1000, 1, 25)
     print(ant.__str__())
     ant.all_points()  # считаем все шаги
-    print(f"всего муравей сделал -> {ant.steps} шагов")
+    print(f"всего муравей посетил -> {ant.steps} клеток")
