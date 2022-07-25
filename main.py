@@ -11,6 +11,7 @@ class Ant:
         self.constraint: int = constraint
         self.steps: int = 1
         self.dct: list = [[self.start_x, self.start_y], step, constraint]
+        self.total: list = []
 
     def __str__(self) -> str:
         start_elements: str = ""
@@ -20,19 +21,21 @@ class Ant:
                "-> " + start_elements[:-2]
 
     def in_bound(self) -> bool:
-        return self.sum_point(self.point[0]) + self.sum_point(self.point[1]) <= self.constraint
+        return self.sum_point(self.point[0]) + self.sum_point(self.point[1]) < self.constraint
 
     def all_points(self):
         while self.in_bound():
             self.point[0] += self.step
             if self.in_bound():
                 self.steps += self.step
+                self.total.append([self.point[0], self.point[1]])
                 # print(self.point)
             else:
                 self.point[0] = self.start_x
                 self.point[1] += self.step
                 if self.in_bound():
                     self.steps += self.step
+                    self.total.append([self.point[0], self.point[1]])
                     # print(self.point)
 
     @staticmethod
@@ -54,4 +57,5 @@ if __name__ == "__main__":
     ant: Ant = Ant(1000, 1000, 1, 25)
     print(ant.__str__())
     ant.all_points()  # считаем все шаги
-    print(f"всего муравей посетил -> {ant.steps} клеток")
+    print(f"всего  муравей посетил {ant.steps} клеток")
+    # print(f"всего  муравей был в координатах-> {ant.total} клеток") # показать все координаты
