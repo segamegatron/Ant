@@ -21,7 +21,7 @@ class Ant:
                "-> " + start_elements[:-2]
 
     def in_bound(self) -> bool:
-        return self.sum_point(self.point[0]) + self.sum_point(self.point[1]) < self.constraint
+        return self.sum_point(self.point[0]) + self.sum_point(self.point[1]) <= self.constraint
 
     def all_points(self):
         while self.in_bound():
